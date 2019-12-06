@@ -1,0 +1,6 @@
+# Referenced at D:\Flutter\quake_report\build\app\intermediates\merged_manifests\release\processReleaseManifest\merged\armeabi-v7a\AndroidManifest.xml:23
+-keep class com.example.quake_report.MainActivity { <init>(...); }
+# Referenced at D:\Flutter\quake_report\build\app\intermediates\merged_manifests\release\processReleaseManifest\merged\armeabi-v7a\AndroidManifest.xml:19
+-keep class io.flutter.app.FlutterApplication { <init>(...); }
+# Referenced at D:\Flutter\quake_report\build\app\intermediates\merged_manifests\release\processReleaseManifest\merged\armeabi-v7a\AndroidManifest.xml:47
+-keep class io.flutter.plugins.urllauncher.WebViewActivity { <init>(...); }
