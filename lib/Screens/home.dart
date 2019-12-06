@@ -134,6 +134,7 @@ class _OopsState extends State<Oops> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: Center(
         child: Image(image: AssetImage("assets/noresult.gif"),),
       ),
