@@ -5,6 +5,7 @@ INJECTED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml:1
 INJECTED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml:1:1-33:12
 INJECTED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml:1:1-33:12
 MERGED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml:1:1-33:12
+MERGED from [:shared_preferences] D:\Flutter\quake_report\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] D:\Flutter\quake_report\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:2:1-14:12
 INJECTED from D:\Flutter\quake_report\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\Flutter\quake_report\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -67,6 +68,8 @@ uses-sdk
 INJECTED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml
 INJECTED from D:\Flutter\quake_report\android\app\src\main\AndroidManifest.xml
+MERGED from [:shared_preferences] D:\Flutter\quake_report\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] D:\Flutter\quake_report\build\shared_preferences\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] D:\Flutter\quake_report\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] D:\Flutter\quake_report\build\url_launcher\intermediates\merged_manifests\debug\processDebugManifest\merged\AndroidManifest.xml:5:5-44
 INJECTED from D:\Flutter\quake_report\android\app\src\debug\AndroidManifest.xml

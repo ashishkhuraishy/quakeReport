@@ -1,0 +1,23 @@
+
+reports.isNotEmpty ? ListView.builder(
+        itemCount: reports.length,
+        itemBuilder: (context, index){
+          return ListTile( 
+            title: Text(reports[index].place),
+            subtitle: Text(reports[index].near),
+            leading: CircleAvatar(
+              backgroundColor: reports[index].bgColor,
+              child: Text(reports[index].mag),
+            ),
+            trailing: Text(reports[index].time),
+            onTap: (){
+              launchUrl(reports[index].url);
+            },
+          );
+        },
+      ):
+      Center(
+        child: SpinKitWave(
+          color: Colors.blue[900],
+        ),
+      )

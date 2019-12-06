@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:quake_report/Services/Report.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -8,91 +8,131 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  DateTime selectedDate;
-  DateTime monthBefore;
+  Map data;
+
+  DateTime endDate;
+  DateTime startDate;
   DateFormat formatter = DateFormat('yyyy-MM-dd');
-  String startDate, endDate;
+  //String startDate, endDate;
   double mag;
+  bool set = false;
 
   Future<Null> _selectDate(BuildContext context, DateTime date) async {
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: date,
         firstDate: DateTime(2014),
-        lastDate: selectedDate.add(Duration(days: 1)));
+        lastDate: DateTime.now());
+
     if (picked != null && picked != date) {
-      if (date == selectedDate) {
+      if (date == endDate) {
         setState(() {
-          selectedDate = picked;
-          endDate = formatter.format(selectedDate);
+          endDate = picked;
+          //endDate = formatter.format(_endDate);
         });
       } else {
         setState(() {
-          monthBefore = picked;
-          startDate = formatter.format(monthBefore);
+          startDate = picked;
+          //startDate = formatter.format(_startDate);
         });
       }
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    selectedDate = DateTime.now().subtract(Duration(days: 1));
-    monthBefore = selectedDate.subtract(Duration(days: 30));
-    startDate = formatter.format(monthBefore);
-    endDate = formatter.format(selectedDate);
-    mag = 5.0;
+  setValues() {
+    endDate = data["endDate"];
+    startDate = data["startDate"];
+    mag = data["mag"];
+    set = !set;
   }
 
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
+
+    print(data);
+    //_endDate = DateTime.parse(data["endDate"]);
+    //_startDate = DateTime.parse(data["starDate"])
+    if (!set) {
+      setValues();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
         centerTitle: true,
         backgroundColor: Colors.blue[900],
       ),
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Text("Start Date"),
+                    Text(
+                      "Start Date",
+                      style: Theme.of(context).textTheme.title,
+                    ),
                     RaisedButton.icon(
-                      label: Text('$startDate'),
+                      color: Colors.blue[900],
+                      label: Text(
+                        '${formatter.format(startDate)}',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       icon: Icon(
-                        Icons.calendar_today,
+                        Icons.date_range,
+                        color: Colors.white,
                       ),
                       onPressed: () {
-                        _selectDate(context, monthBefore);
+                        _selectDate(context, startDate);
                       },
                     ),
                   ],
                 ),
                 Column(
                   children: <Widget>[
-                    Text('End Date'),
-                    RaisedButton(
-                      child: Text('$endDate'),
+                    Text(
+                      'End Date',
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    RaisedButton.icon(
+                      color: Colors.blue[900],
+                      label: Text(
+                        '${formatter.format(endDate)}',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      icon: Icon(
+                        Icons.calendar_today,
+                        color: Colors.white,
+                      ),
                       onPressed: () {
-                        _selectDate(context, selectedDate);
+                        _selectDate(context, endDate);
                       },
                     ),
                   ],
                 ),
               ],
             ),
-            Text("Magnitude $mag"),
+            SizedBox(
+              height: 100,
+            ),
+            Text(
+              "Magnitude",
+              style: Theme.of(context).textTheme.title,
+            ),
             Slider(
-              value: mag, 
+              value: mag,
+              activeColor: Colors.blue[900],
               onChanged: (double value) {
                 setState(() {
                   mag = value;
                 });
               },
+              divisions: 20,
               min: 0.0,
               max: 10.0,
               label: '$mag',
@@ -103,13 +143,14 @@ class _SettingsState extends State<Settings> {
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.save,
-        ),backgroundColor: Colors.blue[900],
-        onPressed: () async {
+        ),
+        backgroundColor: Colors.blue[900],
+        onPressed: () {
           Navigator.pop(context, {
-            "startDate": formatter.format(monthBefore),
-            "endDate": formatter.format(selectedDate),
-            "reports": await getReport(
-                startDate, endDate, mag.toString())
+            "startDate": startDate,
+            "endDate": endDate,
+            "mag": mag,
+            "newInst": true,
           });
         },
       ),
