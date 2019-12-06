@@ -135,7 +135,7 @@ class _OopsState extends State<Oops> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("OOps"),
+        child: Image(image: AssetImage("assets/noresult.gif"),),
       ),
     );
   }
